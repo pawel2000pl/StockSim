@@ -12,14 +12,20 @@ public class ExchangeHistory implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
     @ManyToOne
     @JoinColumn(name="user")
     private User user;
+
     @ManyToOne
     @JoinColumn(name="stock")
     private Stock stock;
+
     @Column(name = "price")
     private Long price;
+
+    @Column(name = "time")
+    private Long time;
 
     public ExchangeHistory() {}
 
@@ -53,5 +59,13 @@ public class ExchangeHistory implements Serializable {
 
     public void setPrice(Long price) {
         this.price = price;
+    }
+
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
     }
 }

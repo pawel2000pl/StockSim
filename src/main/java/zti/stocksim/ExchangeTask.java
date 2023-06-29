@@ -27,6 +27,7 @@ public class ExchangeTask extends JPAResource {
     @GET
     public String run() {
         System.out.println("Executing transactions");
+        Long time = System.currentTimeMillis() / 1000L;
 
         entityTransaction.begin();
 
@@ -90,6 +91,7 @@ public class ExchangeTask extends JPAResource {
                         eh2.setUser(purchaseUser);
                         eh2.setStock(eh.getStock());
                         eh2.setUser(purchaseUser);
+                        eh2.setTime(time);
                         entityManager.persist(eh2);
                     }
 
@@ -140,6 +142,7 @@ public class ExchangeTask extends JPAResource {
                     eh2.setUser(null);
                     eh2.setStock(eh.getStock());
                     eh2.setPrice(offer.getPrice());
+                    eh2.setTime(time);
                     entityManager.persist(eh2);
                 }
                 user.setCash(user.getCash() + offer.getCount() * offer.getPrice());
@@ -159,6 +162,7 @@ public class ExchangeTask extends JPAResource {
                     eh.setUser(user);
                     eh.setStock(s);
                     eh.setPrice(offer.getPrice());
+                    eh.setTime(time);
                     entityManager.persist(eh);
                 }
                 user.setCash(user.getCash() - count * offer.getPrice());

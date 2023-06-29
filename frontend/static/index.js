@@ -148,6 +148,7 @@ const initStock = async function(user) {
     const offerResponse = fetch(SERVER_ADRESS+"offer/mine", {credentials: 'include'});
 
     const copartnershipsResponse = fetch(SERVER_ADRESS+"copartnership", {credentials: 'include'});
+    const historyResponse = fetch(SERVER_ADRESS+"history", {credentials: 'include'});
     const copartnershipsList = await(await copartnershipsResponse).json();
 
     const cpTable = Q("copartnerships-list");
@@ -172,9 +173,18 @@ const initStock = async function(user) {
         (element)=>element.price+"$",
         "count",
         (element)=>element.price * element.count+"$",
-        (element)=>element.isSaleOffer?"Sale":"Purchase",
+        (element)=>element.saleOffer?"Sale":"Purchase",
         (element)=>{return {innerHTML: '<button onclick="deleteOffer('+element.id+')">Delete</button>'}}
     ]);
-    
+
+    const historyTable = Q("history-list");
+    historyTable.innerHTML = "";
+    makeTable(historyTable, await (await historyResponse).json(), [
+        (element)=>(new Date(element.time*1000)).toLocaleString(),
+        (element)=>element.copartnership.name,
+        (element)=>element.price+"$",
+        (element)=>element.count,
+        (element)=>element.price * element.count + "$",
+    ]);
 
 };

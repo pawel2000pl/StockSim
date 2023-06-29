@@ -15,7 +15,7 @@ ENV CATALINA_BASE="/usr/local/tomee"
 ENV FILE_NAME="StockSim-1.0-SNAPSHOT.war"
 RUN apt update
 RUN apt install python3 python3-pip -y
-RUN python3 -m pip install cherrypy
+RUN python3 -m pip install cherrypy requests
 RUN mkdir -p "/frontend"
 
 COPY --from=0 "/home/app/zti.war" "$CATALINA_BASE/webapps/$FILE_NAME"

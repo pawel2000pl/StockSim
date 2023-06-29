@@ -41,10 +41,10 @@ public class OffersApi extends JPAResource {
             return "invalid stock count";
         if (offer.getPrice() <= 0)
             return "invalid stock price";
-        TypedQuery<Wallet> query = entityManager.createQuery("SELECT w FROM wallets w WHERE w.user.id = :userid AND w.copartnership.id = :copartnershipid", Wallet.class);
-        query.setParameter("userid", token.getUser().getId());
-        query.setParameter("copartnershipid", offer.getCopartnership().getId());
         if (offer.getSaleOffer()) {
+            TypedQuery<Wallet> query = entityManager.createQuery("SELECT w FROM wallets w WHERE w.user.id = :userid AND w.copartnership.id = :copartnershipid", Wallet.class);
+            query.setParameter("userid", token.getUser().getId());
+            query.setParameter("copartnershipid", offer.getCopartnership().getId());
             try {
                 Wallet wallet = query.getSingleResult();
                 if (wallet.getCount() < offer.getCount())

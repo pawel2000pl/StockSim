@@ -29,7 +29,6 @@ CREATE UNIQUE INDEX user_username ON users(username);
 
 CREATE TABLE stocks (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    ‘count‘ BIGINT DEFAULT 1,
     copartnership BIGINT,
     FOREIGN KEY (copartnership) REFERENCES copartnerships(id)
 );
@@ -39,11 +38,32 @@ CREATE TABLE exchange_history (
     user BIGINT,
     stock BIGINT NOT NULL,
     price BIGINT,
+    time BIGINT,
     FOREIGN KEY (user) REFERENCES users(id),
     FOREIGN KEY (stock) REFERENCES stocks(id)
 );
 
 CREATE INDEX exchange_history_user ON exchange_history(user);
+
+CREATE VIEW history_report AS
+    SELECT 
+        MAX(exchange_history.id) AS id,
+        time,
+        price,
+        COUNT(*) AS count,
+        stocks.copartnership AS copartnership
+    FROM
+        exchange_history
+    JOIN 
+        stocks ON (stocks.id = exchange_history.stock)
+    GROUP BY
+        time,
+        price,
+        copartnership
+    ORDER BY
+        time DESC,
+        price,
+        copartnership;
 
 CREATE TABLE offers (
      id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -70,7 +90,7 @@ CREATE VIEW wallets AS
         users.id AS user_id,
         copartnerships.id AS copartnership_id,
         COUNT(*) AS count,
-        IFNULL(AVG(exchange_history.price), 0) AS aver_price
+        IFNULL(SUM(exchange_history.price * exchange_history.count)/SUM(exchange_history.count), 0) AS aver_price
     FROM
         users
     JOIN

@@ -9,6 +9,7 @@
         <class>zti.entities.AuthToken</class>
         <class>zti.entities.Copartnership</class>
         <class>zti.entities.ExchangeHistory</class>
+        <class>zti.entities.HistoryReport</class>
         <class>zti.entities.Offer</class>
         <class>zti.entities.Stock</class>
         <class>zti.entities.User</class>

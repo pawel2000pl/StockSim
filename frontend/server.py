@@ -1,5 +1,7 @@
 import os
 import cherrypy
+from tasks import Task
+from run_trigger import download_website
 
 class StaticServer(object):
     @cherrypy.expose
@@ -17,4 +19,12 @@ if __name__ == '__main__':
         'server.socket_host': '0.0.0.0',
         'server.socket_port': 8080
     })
-    cherrypy.quickstart(StaticServer())
+    cherrypy.config.update({'global': {'environment' : 'production'}})
+    cherrypy.log.screen = True
+    
+    task = Task(cherrypy.engine, lambda: download_website("http://localhost:8081/StockSim-1.0-SNAPSHOT/api/exchange-task"), period=300, init_delay=60, repeat_on_close=False)
+    task.subscribe()
+    
+    cherrypy.tree.mount(StaticServer(), '/', dict())
+    cherrypy.engine.start()
+    cherrypy.engine.block()

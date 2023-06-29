@@ -15,6 +15,7 @@ public class Application extends jakarta.ws.rs.core.Application {
         set.add(CopartnershipsApi.class);
         set.add(OffersApi.class);
         set.add(StockApi.class);
+        set.add(HistoryReportApi.class);
         set.add(ExchangeTask.class);
         set.add(CorsFilter.class);
         return set;
