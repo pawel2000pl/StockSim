@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <Resource id="myDataSource" type="javax.sql.DataSource">
+        jdbcDriver=org.mariadb.jdbc.Driver
+        jdbcUrl = jdbc:mariadb://host-of-database:port/db_name
+        userName = db_username
+        password = db_password
+        maxActive = 20
+    </Resource>
+</resources>
