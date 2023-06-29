@@ -24,6 +24,8 @@ public class JPAResource {
                 if ("token".equals(cookie.getName())) {
                     String value = cookie.getValue();
                     AuthToken token = entityManager.find(AuthToken.class, value);
+                    if (token.getExpireTime() < System.currentTimeMillis() / 1000L)
+                        return null;
                     if (token != null)
                         return token;
                 }
