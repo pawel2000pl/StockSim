@@ -139,8 +139,7 @@ const initStock = async function(user) {
         (element)=>{return {innerHTML: 
             '<input id="count-of-'+element.id+'" style="width:5em;" type="number" value="0" min="0" max="9999">'+
             '<input id="price-of-'+element.id+'" style="width:5em;" type="number" value="10" min="0" max="99999">'+
-            '<button onclick="addOffer('+element.copartnership.id+', Q(\'count-of-'+element.id+'\').value, Q(\'price-of-'+element.id+'\').value, true)">Sale</button>'+
-            '<button onclick="addOffer('+element.copartnership.id+', Q(\'count-of-'+element.id+'\').value, Q(\'price-of-'+element.id+'\').value, false)">Purchase</button>'+
+            '<button onclick="addOffer('+element.copartnership.id+', Q(\'count-of-'+element.id+'\').value, Q(\'price-of-'+element.id+'\').value, true)">Sale</button>'+            
             ''
             }}
     ]);
