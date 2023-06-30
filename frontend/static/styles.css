@@ -1,4 +1,65 @@
+body {
+    background-color: lightblue;
+}
+
+input {
+    background-color: lightblue;
+    border-radius: 5px;
+    border-width: 0px;
+    margin: 5px;
+    padding: 2px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+button {
+    background-color: lightblue;
+    border-radius: 5px;
+    border-width: 0px;
+    margin: 5px;
+    padding: 2.5px;
+    padding-left: 5px;
+    padding-right: 5px
+}
+
+button:hover {
+    background-color: rgb(145, 222, 245);
+}
+
 table, tr, th, td {
-    border: black 1px solid;
+    background-color: rgb(115, 182, 205);
+    border: rgb(165, 232, 255) 1px solid;
     border-collapse: collapse;
 }
+
+th {
+    background-color: rgb(95, 162, 185);
+}
+
+.login-table, .login-td, .login-tr {
+    border-style: none;
+    border-radius: 15px;
+    border-collapse: unset;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin: 10vmin;
+}
+
+.logout-button {   
+    background-color: rgb(115, 182, 205);
+}
+
+#logout-btn {
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    background-color: rgb(115, 182, 205);
+    float: right;
+}
+
+#logout-btn:hover {
+    background-color: rgb(125, 202, 225);
+}
+
